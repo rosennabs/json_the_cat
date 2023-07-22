@@ -1,7 +1,7 @@
 const request = require("request");
 
 //Gets the description of the cat breed.
-const fetchBreedDescription = function (breedName, callback) {
+const fetchBreedDescription = function(breedName, callback) {
   const searchUrl = `https://api.thecatapi.com/v1/breeds/search?q=${breedName}`;
 
   request(searchUrl, (error, response, body) => {
@@ -11,9 +11,9 @@ const fetchBreedDescription = function (breedName, callback) {
     } else {
       const data = JSON.parse(body); //converts JSON string to an object
 
-      const breedExists = function () {
+      const breedExists = function() {
         //iterates through the resource array and compares the breed id or name to cmdline argument
-        for (obj of data) {
+        for (let obj of data) {
           if (
             obj.name.toLowerCase() === breedName.toLowerCase() ||
             obj.id.toLowerCase() === breedName.toLowerCase()
