@@ -1,11 +1,11 @@
 const request = require("request");
 
+//Gets the description of the cat breed.
 const fetchBreedDescription = function (breedName, callback) {
   const searchUrl = `https://api.thecatapi.com/v1/breeds/search?q=${breedName}`;
 
   request(searchUrl, (error, response, body) => {
     if (error) {
-      //Handles request errors and print the error details to the screen
       callback("Request Failed", null);
       process.exit;
     } else {
@@ -26,7 +26,6 @@ const fetchBreedDescription = function (breedName, callback) {
       if (breedExists()) {
         callback(null, obj.description);
       } else {
-        //prints a message if breed does not exist in the array.
         callback("Breed not found in the resource.", null);
       }
     }
